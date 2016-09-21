@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <script data-require="angular.js@1.4.0" data-semver="1.4.0" src="https://code.angularjs.org/1.4.0/angular.js"></script>
+        <script src="script.js"></script>
+    </head>
+
+    <body ng-controller="bookController">
+        <ul>
+            <li ng-repeat="book in booksInfo">
+                <a href="" ng-click="isClicked($index)">{{ book.name }}</a>
+            </li>
+        </ul>
+        <div>
+            <button ng-click="showPanel=true">Pridat knihu</button>
+            <form name="myForm" ng-show="showPanel">
+                Nazov: <input type="text" name="nameBook" ng-model="bookName" required><br>
+                Autor: <input type="text" name="authorBook" ng-model="bookAuthor" required><br>
+                Popis: <input type="text" ng-model="bookInfo"><br>
+                Hodnotenie: <input type="radio" ng-model="ranking" value="1">
+                <input type="radio" ng-model="ranking" value="2">
+                <input type="radio" ng-model="ranking" value="3">
+                <input type="radio" ng-model="ranking" value="4">
+                <input type="radio" ng-model="ranking" value="5"> <br>
+                <button type="submit" ng-click="addBook(bookName, bookAuthor, bookInfo, ranking); showMessage=true">Pridaj</button>
+            </form>
+            <form name="form2" ng-show="showMessage">
+                <p>Output Message : {{msg}}</p>
+                <p>StatusCode: {{statusval}}</p>
+                <p>Status: {{statustext}}</p>
+                <p>Response Headers: {{headers}}</p>
+            </form>
+        </div>
+    </body>
+</html>
